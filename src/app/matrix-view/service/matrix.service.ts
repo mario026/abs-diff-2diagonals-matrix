@@ -88,6 +88,15 @@ export class MatrixService {
     );
   }
 
+  /**
+   * Checks if the cells in the matrix contain invalid values
+   * invalid numbers are number bigger then 100 or smaller then -100
+   * @returns true if the cells contain invalid values
+   */
+  public doesCellsContainInvalidValues() {
+    const matrix = this.matrix2d();
+    return matrix.some((row) => row.some((cell) => cell > 100 || cell < -100));
+  }
   //#endregion
 
   //#region private methods
@@ -102,16 +111,6 @@ export class MatrixService {
         .fill(0)
         .map(() => Array(this.matrixCells()).fill(0))
     );
-  }
-
-  /**
-   * Checks if the cells in the matrix contain invalid values
-   * invalid numbers are number bigger then 100 or smaller then -100
-   * @returns true if the cells contain invalid values
-   */
-  public doesCellsContainInvalidValues() {
-    const matrix = this.matrix2d();
-    return matrix.some((row) => row.some((cell) => cell > 100 || cell < -100));
   }
 
   /**
