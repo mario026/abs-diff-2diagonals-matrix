@@ -1,0 +1,36 @@
+<div class="matrix-card-actions">
+  <div class="action-slider">
+    <section>
+      <label for="matrixCellsSlider"
+        >Matrix Cells: {{ matrixService.matrixCells() }}</label
+      >
+      <mat-slider min="1" max="5" step="1" discrete>
+        <input
+          id="matrixCellsSlider"
+          matSliderThumb
+          [value]="matrixService.matrixCells()"
+          (valueChange)="matrixService.setMatrixCells = $event"
+        />
+      </mat-slider>
+    </section>
+
+    <div
+      matTooltip="Please fill all cells with valid values."
+      [matTooltipDisabled]="!matrixService.doesCellsContainInvalidValues()"
+    >
+      <button
+        mat-raised-button
+        [disabled]="matrixService.doesCellsContainInvalidValues()"
+        (click)="matrixService.generateAbsDiagonalDifference()"
+      >
+        Calculate
+      </button>
+    </div>
+  </div>
+
+  <p>
+    The absolute difference between the sums of the matrix's two diagonals as a
+    single integer:
+    {{ matrixService.absDiagonalDifference() ?? "has not been generated yet." }}
+  </p>
+</div>

@@ -1,0 +1,26 @@
+<p>
+  <mat-grid-list
+    cols="{{ matrixService.matrixCells() }}"
+    rowHeight="{{ matrixService.matrixCells() }}:{{
+      matrixService.matrixCells()
+    }}"
+  >
+    @for (row of matrixService.matrix2d(); track lodashUnique(row.toString());
+    let rowIndex = $index ) { @for(col of row; track
+    lodashUnique(col.toString()); let colIndex = $index ){
+    <mat-grid-tile>
+      <mat-form-field class="cell-form-field">
+        <input
+          type="number"
+          matInput
+          [value]="col"
+          (change)="matrixService.setCellInMatrix(rowIndex, colIndex, $event)"
+          min="-100"
+          max="100"
+          placeholder="value"
+        />
+      </mat-form-field>
+    </mat-grid-tile>
+    } }
+  </mat-grid-list>
+</p>
